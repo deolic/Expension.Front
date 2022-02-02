@@ -41,10 +41,10 @@
 import axios from 'axios'
 import store from '../store'
 
-import AddedExpense from '../components/AddedExpense.vue'
+import AddedExpense from './AddedExpense.vue'
 
 export default {
-  name: 'HelloWorld',
+  name: 'ShownExpenses',
   store,
 
   data: () => ({

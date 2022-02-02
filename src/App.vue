@@ -1,7 +1,9 @@
 <template>
   <v-app>
     <v-app-bar app color="white" flat>
-      <v-img src="./assets/logotest.png" height="66" width="66" contain />
+      <router-link to="/">
+        <v-img src="./assets/logotest.png" height="66" width="66" contain  />
+      </router-link>
       <v-tabs centered class="ml-n9" color="grey darken-1">
         <v-tab to="/"> Homepage </v-tab>
         <v-tab to="/manage-items" v-if="$store.state.admin"> Items </v-tab>

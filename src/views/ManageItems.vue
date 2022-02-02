@@ -8,6 +8,7 @@
             <v-icon>mdi-delete</v-icon>
           </v-btn>
         </v-toolbar>
+        <div class="pt-5 pl-10">{{ responseMessageSubmit }}</div>
       </v-col>
       <v-spacer />
       <v-divider vertical></v-divider>
@@ -29,7 +30,7 @@
           ></v-text-field>
           <v-btn class="ml-4" @click="submit"> submit </v-btn>
           <v-btn class="ml-4" @click="clearForm"> clear </v-btn>
-          <template>{{ responseMessage }}</template>
+          <div class="pt-5 pl-10">{{ responseMessageDelete }}</div>
         </v-form>
       </v-col>
     </v-row>
@@ -52,7 +53,8 @@ export default {
     itemType: '',
     itemTypeRules: [(v) => !!v || 'Item type is required'],
     responseReceived: false,
-    responseMessage: null,
+    responseMessageDelete: null,
+    responseMessageSubmit: null,
     value: null
   }),
 
@@ -71,12 +73,12 @@ export default {
           })
           .then((response) => {
             this.responseReceived = true
-            this.responseMessage = 'Item has been successfully deleted'
+            this.responseMessageSubmit = 'Item has been successfully deleted'
             this.error = false
           })
           .catch((error) => {
             this.responseReceived = true
-            this.responseMessage = error.response.data.message
+            this.responseMessageSubmit = error.response.data.message
             this.error = true
           })
           .finally(() => {
@@ -97,12 +99,12 @@ export default {
           })
           .then((response) => {
             this.responseReceived = true
-            this.responseMessage = 'Item has been added'
+            this.responseMessageDelete = 'Item has been added'
             this.error = false
           })
           .catch((error) => {
             this.responseReceived = true
-            this.responseMessage = error.response.data.message
+            this.responseMessageDelete = error.response.data.message
             this.error = true
           })
           .finally(() => {

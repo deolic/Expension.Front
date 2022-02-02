@@ -1,15 +1,15 @@
 <template>
-  <hello-world />
+  <shown-expenses />
 </template>
 
 <script>
-import HelloWorld from '../components/HelloWorld'
+import ShownExpenses from '../components/ShownExpenses'
 
 export default {
   name: 'Home',
 
   components: {
-    HelloWorld
+    ShownExpenses
   }
 }
 </script>
