@@ -46,7 +46,7 @@ export default {
       setTimeout(() => {
         this.filteredItems = this.items.filter((e) => {
           if (
-            (e.name || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1
+            (e.name + ' | ' + e.itemType || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1
           ) {
             return e
           }
@@ -66,7 +66,11 @@ export default {
       axios
         .get('api/items')
         .then((response) => {
-          this.items = response.data
+          this.items = response.data.map((i) => {
+            var id = Object.values(i)[0]
+            var info = Object.values(i)[1] + ' | ' + Object.values(i)[2]
+            return { itemId: id, name: info }
+          })
           this.filteredItems = this.items
         })
         .catch((error) => {

@@ -18,7 +18,7 @@
     <v-divider></v-divider>
     <v-footer padless>
       <v-layout justify-center class="footer-text my-2">
-        <template>2021 — <a href="https://github.com/deolic">deolic</a></template>
+        <template>2022 — <a href="https://github.com/deolic">deolic</a></template>
         <template> — </template>
         <router-link to="/terms" class="footer-link"><b>Terms of Use</b></router-link>
         <template> — </template>
