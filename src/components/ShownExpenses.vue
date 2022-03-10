@@ -1,15 +1,5 @@
 <template>
   <v-container>
-    <v-row align="center" justify="center">
-      <v-col class="mb-4" v-if="!$store.state.logged">
-        <h1 class="display-2 font-weight-bold mb-3">Welcome to Expension</h1>
-        <p>
-          Only logged users can use the app.
-          <router-link to="/login"><b>Log in</b></router-link> or
-          <router-link to="/register">create a new account</router-link>.
-        </p>
-      </v-col>
-    </v-row>
     <div v-if="$store.state.logged">
       <v-row justify="center" class="mt-5 mb-1">
         <v-btn @click="addExpense">
@@ -38,7 +28,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { requests } from '../requests-common'
 import store from '../store'
 
 import AddedExpense from './AddedExpense.vue'
@@ -64,14 +54,8 @@ export default {
   },
 
   methods: {
-    signOut () {
-      localStorage.clear()
-      this.$store.commit('signOut')
-      this.$router.push('/')
-      location.reload()
-    },
     addExpense () {
-      axios
+      requests
         .post(
           'api/expenses',
           {
@@ -102,8 +86,8 @@ export default {
 
       this.loading = true
 
-      axios
-        .get('api/expenses/user', {
+      requests
+        .get('api/expenses/user/all', {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('token')
           }
@@ -118,15 +102,6 @@ export default {
         .finally(() => {
           this.loading = false
         })
-    }
-  },
-
-  mounted () {
-    if (localStorage.getItem('userId') !== null) {
-      this.$store.commit('signIn')
-      if (localStorage.getItem('isAdmin') === 'true') {
-        this.$store.commit('adminPermissions')
-      }
     }
   }
 }

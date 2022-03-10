@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { requests } from '../requests-common'
 import { format, parseISO } from 'date-fns'
 
 import ChooseItem from '../components/ChooseItem.vue'
@@ -105,7 +105,7 @@ export default {
   methods: {
     addBoughtItem () {
       if (this.$refs.form.validate()) {
-        axios
+        requests
           .post(
             'api/bought-items',
             {
@@ -136,7 +136,7 @@ export default {
       }
     },
     deleteExpense () {
-      axios
+      requests
         .delete(
           'api/expenses/' + this.expense.expenseId,
           {
@@ -161,7 +161,7 @@ export default {
         })
     },
     deleteBoughtItem (boughtItem) {
-      axios
+      requests
         .delete(
           'api/bought-items/' + boughtItem,
           {
@@ -190,7 +190,7 @@ export default {
 
       this.loading = true
 
-      axios
+      requests
         .get('api/expenses/' + this.expense.expenseId,
           {
             headers: {

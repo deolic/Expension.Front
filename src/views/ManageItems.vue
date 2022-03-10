@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { requests } from '../requests-common'
 
 import ChooseItem from '../components/ChooseItem.vue'
 
@@ -65,7 +65,7 @@ export default {
   methods: {
     deleteItem () {
       if (this.value) {
-        axios
+        requests
           .delete('api/items/' + this.value, {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -88,7 +88,7 @@ export default {
     },
     submit () {
       if (this.$refs.form.validate()) {
-        axios
+        requests
           .post('api/items', {
             Name: this.itemName,
             ItemType: this.itemType

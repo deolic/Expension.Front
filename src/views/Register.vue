@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { requests } from '../requests-common'
 
 export default {
   name: 'Register',
@@ -98,7 +98,7 @@ export default {
   methods: {
     register () {
       if (this.$refs.form.validate()) {
-        axios
+        requests
           .post('api/users/register', {
             Email: this.email,
             Password: this.password

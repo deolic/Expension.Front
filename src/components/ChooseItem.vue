@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { requests } from '../requests-common'
 
 export default {
   name: 'ChooseItem',
@@ -63,7 +63,7 @@ export default {
 
       this.loading = true
 
-      axios
+      requests
         .get('api/items')
         .then((response) => {
           this.items = response.data.map((i) => {

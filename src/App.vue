@@ -38,11 +38,14 @@ export default {
 
   methods: {
     signOut () {
-      localStorage.clear()
       this.$store.commit('signOut')
       this.$router.push('/')
       location.reload()
     }
+  },
+
+  mounted () {
+    this.$store.commit('checkToken')
   }
 }
 </script>

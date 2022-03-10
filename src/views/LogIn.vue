@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { requests } from '../requests-common'
 
 export default {
   name: 'LogIn',
@@ -61,21 +61,18 @@ export default {
   methods: {
     signIn () {
       if (this.$refs.form.validate()) {
-        axios
-          .post('api/users/login', {
+        requests
+          .post('/api/users/login', {
             Email: this.email,
             Password: this.password
           })
           .then(response => {
             this.responseData = response.data
             if (this.responseData !== undefined) {
-              localStorage.setItem('userId', this.responseData.userId.toString())
-              localStorage.setItem('email', this.responseData.email)
-              localStorage.setItem('isAdmin', this.responseData.isAdmin.toString())
+              // localStorage.setItem('email', this.responseData.email)
               localStorage.setItem('token', this.responseData.token.toString())
               this.error = false
               this.$router.push('/')
-              location.reload()
             }
           })
           .catch(error => {
