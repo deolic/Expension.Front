@@ -1,4 +1,4 @@
-// import jsonwebtoken from 'jsonwebtoken'
+import jsonwebtoken from 'jsonwebtoken'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -26,7 +26,7 @@ export default new Vuex.Store({
     checkToken (state) {
       var token = localStorage.getItem('token')
       if (token != null) {
-        var temp //= jsonwebtoken.verify(token, 'String used to generate a security key')
+        var temp = jsonwebtoken.verify(token, 'String used to generate a security key')
         if (temp != null) {
           state.logged = true
           if (temp.role === 'admin') {
