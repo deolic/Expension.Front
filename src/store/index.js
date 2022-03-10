@@ -26,13 +26,15 @@ export default new Vuex.Store({
     checkToken (state) {
       var token = localStorage.getItem('token')
       if (token != null) {
-        var temp = jsonwebtoken.verify(token, 'String used to generate a security key')
-        if (temp != null) {
-          state.logged = true
-          if (temp.role === 'admin') {
-            state.admin = true
+        try {
+          var temp = jsonwebtoken.verify(token, 'String used to generate a security key', { ignoreNotBefore: true })
+          if (temp != null) {
+            state.logged = true
+            if (temp.role === 'admin') {
+              state.admin = true
+            }
           }
-        } else {
+        } catch (err) {
           state.logged = false
           state.admin = false
         }

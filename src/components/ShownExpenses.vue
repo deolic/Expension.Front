@@ -84,6 +84,7 @@ export default {
     loadExpenses () {
       if (this.loading) return
 
+      this.$store.commit('checkToken')
       this.loading = true
 
       requests
